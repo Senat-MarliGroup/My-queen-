@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Queen — Студия красоты в Краснодаре</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #ffffff;
+      --bg-warm: #fdf8f6;
+      --text: #1a1a1a;
+      --text-soft: #6b6b6b;
+      --rose: #d4a5a5;
+      --rose-light: #f5e6e6;
+      --rose-dark: #b88080;
+      --gold: #c9a96e;
+      --gold-light: #f0e6d0;
+      --radius: 24px;
+      --radius-sm: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    /* Header */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(212,165,165,0.15);
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .brand-mark {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, var(--rose), var(--gold));
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 16px rgba(212,165,165,0.3);
+      position: relative;
+    }
+    .brand-mark::after {
+      content: '👑';
+      position: absolute;
+      top: -8px; right: -6px;
+      font-size: 0.7rem;
+      filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+    }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .brand-text .logo-text {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+    .brand-text span {
+      font-size: 0.65rem;
+      color: var(--rose-dark);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .topbar-phone {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.3s;
+    }
+    .topbar-phone:hover { color: var(--rose-dark); }
+
+    .hamburger {
+      width: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+    .hamburger div {
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+    .hamburger div:nth-child(2) { width: 70%; margin-left: auto; }
+
+    /* Menu Overlay */
+    .nav-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(30px);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.4s;
+    }
+    .nav-overlay.show { opacity: 1; pointer-events: all; }
+    .nav-overlay a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--text);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 6px;
+    }
+    .nav-overlay a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%;
+      width: 0; height: 1px;
+      background: linear-gradient(90deg, var(--rose), var(--gold));
+      transition: 0.3s;
+      transform: translateX(-50%);
+    }
+    .nav-overlay a:hover::after { width: 100%; }
+
+    /* Hero */
+    .hero-section {
+      padding: 140px 28px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      min-height: 90vh;
+    }
+
+    .hero-left h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+    .hero-left h1 em {
+      font-style: italic;
+      background: linear-gradient(135deg, var(--rose-dark), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-left p {
+      font-size: 1.05rem;
+      color: var(--text-soft);
+      max-width: 440px;
+      margin-bottom: 36px;
+      font-weight: 400;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-main {
+      padding: 16px 32px;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-fill {
+      background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+      color: #fff;
+      box-shadow: 0 8px 28px rgba(212,165,165,0.35);
+    }
+    .btn-fill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(212,165,165,0.45);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid rgba(212,165,165,0.4);
+    }
+    .btn-outline:hover {
+      border-color: var(--rose);
+      background: var(--rose-light);
+    }
+
+    .hero-right {
+      position: relative;
+    }
+    .hero-right img {
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.08);
+      object-fit: cover;
+      aspect-ratio: 3/4;
+    }
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      top: -20px; left: -20px;
+      right: 20px; bottom: 20px;
+      border: 1px solid var(--rose);
+      border-radius: var(--radius);
+      opacity: 0.3;
+      z-index: -1;
+    }
+
+    /* Section styling */
+    .section {
+      padding: 100px 28px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .section-header p {
+      color: var(--text-soft);
+      font-size: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--rose), var(--gold));
+      margin: 16px auto 0;
+      border-radius: 2px;
+    }
+
+    /* Services */
+    .services-wrap {
+      background: var(--bg-warm);
+      border-radius: var(--radius);
+      padding: 60px 40px;
+    }
+    .services-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+    }
+    .service-box {
+      background: #fff;
+      border-radius: var(--radius-sm);
+      padding: 36px 28px;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.03);
+      transition: all 0.4s;
+      border: 1px solid rgba(212,165,165,0.08);
+    }
+    .service-box:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.06);
+      border-color: rgba(212,165,165,0.2);
+    }
+    .service-icon {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, var(--rose-light), var(--gold-light));
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 20px;
+      font-size: 1.4rem;
+    }
+    .service-box h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+      color: var(--text);
+    }
+    .service-box ul {
+      list-style: none;
+      color: var(--text-soft);
+      font-size: 0.88rem;
+      line-height: 2.2;
+    }
+
+    /* Portfolio */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .gallery-item {
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      cursor: zoom-in;
+      position: relative;
+      aspect-ratio: 1;
+    }
+    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.25), transparent 50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gallery-item:hover::after { opacity: 1; }
+
+    /* Reviews */
+    .reviews-bg {
+      background: linear-gradient(180deg, var(--bg-warm) 0%, #fff 100%);
+      border-radius: var(--radius);
+      padding: 60px 40px;
+    }
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .review-item {
+      background: #fff;
+      border-radius: var(--radius-sm);
+      padding: 32px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      border-left: 3px solid var(--rose);
+      transition: 0.3s;
+    }
+    .review-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.05);
+    }
+    .review-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .review-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--rose), var(--gold));
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .review-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .review-stars {
+      color: #e6b54a;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    }
+    .review-item p {
+      color: var(--text-soft);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+    }
+    .review-date {
+      margin-top: 14px;
+      font-size: 0.78rem;
+      color: #aaa;
+      font-weight: 500;
+    }
+
+    .summary-text {
+      max-width: 700px;
+      margin: 0 auto 40px;
+      text-align: center;
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      padding: 24px;
+      background: #fff;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(212,165,165,0.1);
+    }
+
+    .center-btn {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    /* Contacts */
+    .contact-card {
+      background: #fff;
+      border: 1px solid rgba(212,165,165,0.12);
+      border-radius: var(--radius);
+      padding: 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.03);
+    }
+    .contact-info h3 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+    .contact-info .sub {
+      color: var(--text-soft);
+      font-size: 0.9rem;
+      margin-bottom: 32px;
+    }
+    .info-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 20px;
+      color: var(--text-soft);
+      font-size: 0.95rem;
+    }
+    .info-line svg {
+      flex-shrink: 0;
+      margin-top: 3px;
+      color: var(--rose-dark);
+    }
+    .info-line a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .info-line a:hover { color: var(--rose-dark); }
+
+    .contact-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .contact-actions a {
+      padding: 16px 24px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-align: center;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .btn-green {
+      background: var(--green, #22c55e);
+      color: #fff;
+    }
+    .btn-green:hover { background: #16a34a; transform: translateY(-2px); }
+    .btn-2gis {
+      background: var(--bg-warm);
+      color: var(--text);
+      border: 1.5px solid rgba(212,165,165,0.2);
+    }
+    .btn-2gis:hover { border-color: var(--rose); background: var(--rose-light); }
+
+    /* Footer */
+    .site-footer {
+      text-align: center;
+      padding: 48px 28px;
+      color: #aaa;
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(212,165,165,0.1);
+    }
+
+    /* FAB */
+    .fab-wrap {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 998;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: flex-end;
+    }
+    .fab-btn {
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+      transition: all 0.3s;
+      position: relative;
+    }
+    .fab-btn:hover { transform: scale(1.08); }
+    .fab-book {
+      background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+      animation: fabPulse 2.5s infinite;
+    }
+    .fab-wa {
+      background: #25d366;
+      width: 50px; height: 50px;
+    }
+    .fab-tip {
+      position: absolute;
+      right: 68px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #fff;
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      color: var(--text);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+    .fab-btn:hover .fab-tip { opacity: 1; }
+
+    @keyframes fabPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(212,165,165,0.4); }
+      70% { box-shadow: 0 0 0 18px rgba(212,165,165,0); }
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
+      display: none;
+      place-items: center;
+    }
+    .lightbox.on { display: grid; }
+    .lightbox img {
+      max-width: 88vw;
+      max-height: 82vh;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 24px; right: 24px;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.08);
+      color: var(--text);
+      font-size: 1.4rem;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    /* Reveal */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .hero-section { grid-template-columns: 1fr; text-align: center; min-height: auto; }
+      .hero-left p { margin: 0 auto 32px; }
+      .hero-actions { justify-content: center; }
+      .hero-right { order: -1; max-width: 380px; margin: 0 auto; }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+      .contact-card { grid-template-columns: 1fr; padding: 40px 28px; text-align: center; }
+      .contact-actions { align-items: center; }
+      .topbar-phone span { display: none; }
+    }
+    @media (max-width: 600px) {
+      .section { padding: 70px 20px; }
+      .services-wrap, .reviews-bg { padding: 40px 24px; }
+      .gallery { gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="topbar">
+    <a href="#" class="brand">
+      <div class="brand-mark">MQ</div>
+      <div class="brand-text">
+        <div class="logo-text">My Queen</div>
+        <span>Студия красоты</span>
+      </div>
+    </a>
+    <div class="topbar-right">
+      <a href="tel:+79180482859" class="topbar-phone">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>+7 (918) 048-28-59</span>
+      </a>
+      <div class="hamburger" id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <nav class="nav-overlay" id="navOverlay">
+    <a href="#services" onclick="toggleMenu()">Услуги</a>
+    <a href="#portfolio" onclick="toggleMenu()">Портфолио</a>
+    <a href="#reviews" onclick="toggleMenu()">Отзывы</a>
+    <a href="#contacts" onclick="toggleMenu()">Контакты</a>
+    <a href="https://dikidi.net/671969?p=0.pi" target="_blank" onclick="toggleMenu()">Записаться</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero-section">
+    <div class="hero-left fade-in">
+      <h1>Студия красоты <em>My Queen</em></h1>
+      <p>Маникюр, педикюр, наращивание и ламинирование ресниц, коррекция бровей. Работаем в четыре руки — быстро и качественно. Комфортное кресло для педикюра и уютная атмосфера в Краснодаре.</p>
+      <div class="hero-actions">
+        <a href="https://dikidi.net/671969?p=0.pi" target="_blank" class="btn-main btn-fill">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Записаться онлайн
+        </a>
+        <a href="https://wa.me/79180482859" target="_blank" class="btn-main btn-outline">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="hero-right fade-in">
+      <img src="hero.jpg" alt="My Queen — студия красоты">
+    </div>
+  </section>
+
+  <!-- Services -->
+  <div class="section" id="services">
+    <div class="section-header fade-in">
+      <h2>Услуги</h2>
+      <p>Полный комплекс ногтевого сервиса, ресниц и бровей</p>
+      <div class="divider"></div>
+    </div>
+    <div class="services-wrap fade-in">
+      <div class="services-row">
+        <div class="service-box">
+          <div class="service-icon">💅</div>
+          <h3>Ногтевые студии</h3>
+          <ul>
+            <li>Женский педикюр</li>
+            <li>Мужской педикюр</li>
+            <li>Мужской маникюр</li>
+            <li>Аппаратный маникюр</li>
+            <li>Гель-лак</li>
+            <li>Наращивание гелем</li>
+            <li>Наращивание акрилом</li>
+          </ul>
+        </div>
+        <div class="service-box">
+          <div class="service-icon">👁</div>
+          <h3>Ресницы и брови</h3>
+          <ul>
+            <li>Наращивание ресниц</li>
+            <li>Ламинирование ресниц</li>
+            <li>Окрашивание ресниц</li>
+            <li>Коррекция бровей</li>
+            <li>Окрашивание бровей</li>
+            <li>Ламинирование бровей</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portfolio -->
+  <div class="section" id="portfolio">
+    <div class="section-header fade-in">
+      <h2>Портфолио</h2>
+      <p>Работы наших мастеров</p>
+      <div class="divider"></div>
+    </div>
+    <div class="gallery fade-in">
+      <div class="gallery-item" onclick="openBox('photo1.jpg')"><img src="photo1.jpg" alt="Работа 1"></div>
+      <div class="gallery-item" onclick="openBox('photo2.jpg')"><img src="photo2.jpg" alt="Работа 2"></div>
+      <div class="gallery-item" onclick="openBox('photo3.jpg')"><img src="photo3.jpg" alt="Работа 3"></div>
+      <div class="gallery-item" onclick="openBox('photo4.jpg')"><img src="photo4.jpg" alt="Работа 4"></div>
+      <div class="gallery-item" onclick="openBox('photo5.jpg')"><img src="photo5.jpg" alt="Работа 5"></div>
+      <div class="gallery-item" onclick="openBox('photo6.jpg')"><img src="photo6.jpg" alt="Работа 6"></div>
+      <div class="gallery-item" onclick="openBox('photo7.jpg')"><img src="photo7.jpg" alt="Работа 7"></div>
+      <div class="gallery-item" onclick="openBox('photo8.jpg')"><img src="photo8.jpg" alt="Работа 8"></div>
+    </div>
+  </div>
+
+  <!-- Reviews -->
+  <div class="section" id="reviews">
+    <div class="section-header fade-in">
+      <h2>Отзывы</h2>
+      <p>119 отзывов на 2ГИС · Рейтинг 5.0</p>
+      <div class="divider"></div>
+    </div>
+    <div class="reviews-bg fade-in">
+      <div class="summary-text">
+        Клиенты ценят комфортное кресло для педикюра и возможность сделать маникюр и педикюр одновременно. Мастера делают идеальные ногти с тонкой работой по обработке пальчиков. Отмечают быстрое выполнение в четыре руки, напитки и сладости во время процедур.
+      </div>
+      <div class="review-grid">
+        <div class="review-item">
+          <div class="review-top">
+            <div class="review-avatar">ЕК</div>
+            <div>
+              <div class="review-name">Елизавета Крауберг</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p>Второй раз прихожу на маникюр к мастеру Владе, всё очень нравится! Ноготочки тонкие и аккуратные. Маникюр делает быстро и качественно — обязательно приду ещё!</p>
+          <div class="review-date">6 июня 2026</div>
+        </div>
+        <div class="review-item">
+          <div class="review-top">
+            <div class="review-avatar">ЮЧ</div>
+            <div>
+              <div class="review-name">Юлия Чернова</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p>Была на окрашивании и коррекции бровей, сделала ламинирование ресниц. Очень понравилось, впервые после переезда нашла своих мастеров!</p>
+          <div class="review-date">9 мая 2026 · Отзыв подтверждён</div>
+        </div>
+        <div class="review-item">
+          <div class="review-top">
+            <div class="review-avatar">ИС</div>
+            <div>
+              <div class="review-name">Ирина Столова</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p>Ходила на гелевую коррекцию, мастер Алина сделала всё идеально. Очень приятная девушка — приду ещё!</p>
+          <div class="review-date">13 июля 2026</div>
+        </div>
+        <div class="review-item">
+          <div class="review-top">
+            <div class="review-avatar">ОП</div>
+            <div>
+              <div class="review-name">Ольга Прохоренко</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p>Мастер Мария супер! Хожу к ней на брови второй раз и сегодня решила сходить на ламинирование ресниц. Я в восторге!</p>
+          <div class="review-date">24 июня 2026</div>
+        </div>
+        <div class="review-item">
+          <div class="review-top">
+            <div class="review-avatar">VK</div>
+            <div>
+              <div class="review-name">virgo k</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p>Ходила к мастеру Анастасии, всё понравилось, качественно сделала.</p>
+          <div class="review-date">26 ноября 2025 · Отзыв подтверждён</div>
+        </div>
+        <div class="review-item">
+          <div class="review-top">
+            <div class="review-avatar">АА</div>
+            <div>
+              <div class="review-name">Анастасия Анастасия</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+          </div>
+          <p>Лучшая студия в городе! Хожу к мастеру Алине уже 5 лет. Переехала в Новороссийск, но приезжаю именно сюда.</p>
+          <div class="review-date">13 июля 2026</div>
+        </div>
+      </div>
+      <div class="center-btn">
+        <a href="https://2gis.ru/krasnodar/geo/70000001081662112" target="_blank" class="btn-main btn-outline">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Все 119 отзывов на 2ГИС
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contacts -->
+  <div class="section" id="contacts">
+    <div class="section-header fade-in">
+      <h2>Контакты</h2>
+      <p>Ждём вас по предварительной записи</p>
+      <div class="divider"></div>
+    </div>
+    <div class="contact-card fade-in">
+      <div class="contact-info">
+        <h3>My Queen</h3>
+        <div class="sub">Студия красоты · Краснодар</div>
+        <div class="info-line">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div>Улица Григория Булгакова, лит14</div>
+        </div>
+        <div class="info-line">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <a href="tel:+79180482859">+7 (918) 048-28-59</a>
+        </div>
+        <div class="info-line">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span>Ежедневно по предварительной записи</span>
+        </div>
+      </div>
+      <div class="contact-actions">
+        <a href="https://2gis.ru/krasnodar/geo/70000001081662112" target="_blank" class="btn-green">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          Маршрут в 2ГИС
+        </a>
+        <a href="https://2gis.ru/krasnodar/geo/70000001081662112" target="_blank" class="btn-2gis">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Профиль на 2ГИС
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>© 2026 My Queen · Студия красоты · Краснодар</p>
+    <p style="margin-top:6px;">Рейтинг 5.0 · 119 отзывов · 176 фото работ</p>
+  </footer>
+
+  <!-- Floating Buttons -->
+  <div class="fab-wrap">
+    <a href="https://wa.me/79180482859" target="_blank" class="fab-btn fab-wa">
+      <span class="fab-tip">WhatsApp</span>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </a>
+    <a href="https://dikidi.net/671969?p=0.pi" target="_blank" class="fab-btn fab-book">
+      <span class="fab-tip">Записаться</span>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    </a>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeBox()">
+    <button class="lightbox-close" onclick="closeBox()">✕</button>
+    <img id="lbImg" src="" alt="">
+  </div>
+
+  <script>
+    // Menu
+    const ham = document.getElementById('hamburger');
+    const nav = document.getElementById('navOverlay');
+    let open = false;
+    ham.addEventListener('click', () => {
+      open = !open;
+      nav.classList.toggle('show', open);
+    });
+    function toggleMenu() {
+      open = false;
+      nav.classList.remove('show');
+    }
+
+    // Scroll reveal
+    const faders = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    faders.forEach(el => observer.observe(el));
+
+    // Lightbox
+    function openBox(src) {
+      document.getElementById('lbImg').src = src;
+      document.getElementById('lightbox').classList.add('on');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeBox() {
+      document.getElementById('lightbox').classList.remove('on');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBox(); });
+  </script>
+</body>
+</html>
