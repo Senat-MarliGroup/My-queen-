@@ -192,7 +192,7 @@
     /* Hero */
   .hero-section {
   position: relative;
-  min-height: 100vh;
+  min-height: 120vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -219,7 +219,7 @@
   width: 100%;
   padding-top: 0;
   margin-top: auto;
-  margin-bottom: 0;
+  margin-bottom: 20px;
 }
 
 
@@ -895,7 +895,7 @@
   width: 100%;
   max-width: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 20px;
 }
 
 
@@ -961,7 +961,7 @@
   background: linear-gradient(135deg, var(--rose), var(--rose-dark));
 }
 
-@media (max-width: 600px) {
+ @media (max-width: 600px) {
   .section { padding: 70px 20px; }
   .services-wrap, .reviews-bg { padding: 40px 24px; }
   .gallery { gap: 10px; }
@@ -970,8 +970,9 @@
   .features-row { gap: 32px; }
   .hero-side-btn { width: 48px; height: 48px; }
   .hero-side-btns { right: 16px; bottom: 16px; gap: 10px; }
-  .hero-section { padding-bottom: 80px; }
-  .hero-content { margin-bottom: 40px; }
+  .hero-section { min-height: 110vh; padding-bottom: 0; }
+  .hero-content { margin-bottom: 16px; }
+  .hero-bottom { margin-bottom: 16px; }
 }
 
 
