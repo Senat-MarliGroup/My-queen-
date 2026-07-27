@@ -198,9 +198,10 @@
   align-items: center;
   justify-content: flex-end;
   text-align: center;
-  padding: 100px 0 100px;
+  padding: 100px 0 20px;
   overflow: hidden;
 }
+
 
 .hero-bg {
   position: absolute;
@@ -209,14 +210,16 @@
   filter: brightness(0.55);
   z-index: 0;
 }
- .hero-content {
+  .hero-content {
   position: relative;
   z-index: 1;
   max-width: 900px;
   width: 100%;
   padding-top: 0;
-  margin-bottom: 40px;
+  margin-top: auto;
+  margin-bottom: 24px;
 }
+
 
 
  .hero-content h1 {
@@ -886,8 +889,10 @@
   width: 100%;
   max-width: none;
   padding: 0;
-  margin-top: auto;
+  margin-top: 0;
+  margin-bottom: 0;
 }
+
 
 .hero-big-btn {
   display: flex;
@@ -913,15 +918,15 @@
 /* Круглые кнопки справа */
 .hero-side-btns {
   position: fixed;
-  right: 24px;
-  top: 50%;
-  transform: translateY(-50%);
+  right: 20px;
+  bottom: 20px;
   z-index: 100;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   margin: 0;
 }
+
 
 
 .hero-side-btn {
@@ -939,7 +944,7 @@
   transition: all 0.3s ease;
 }
 .hero-side-btn:hover {
-  transform: scale(1.12) translateX(-4px);
+  transform: scale(1.12);
   box-shadow: 0 12px 40px rgba(0,0,0,0.3);
 }
 
@@ -951,11 +956,17 @@
 }
 
 @media (max-width: 600px) {
-  @media (max-width: 600px) {
+  .section { padding: 70px 20px; }
+  .services-wrap, .reviews-bg { padding: 40px 24px; }
+  .gallery { gap: 10px; }
+  .service-card { flex: 0 0 260px; }
+  .tab-btn { padding: 14px 20px; font-size: 0.95rem; }
+  .features-row { gap: 32px; }
   .hero-side-btn { width: 48px; height: 48px; }
-  .hero-side-btns { right: 16px; gap: 12px; }
-  .hero-section { padding-bottom: 100px; }
+  .hero-side-btns { right: 16px; bottom: 16px; gap: 10px; }
+  .hero-content { margin-bottom: 16px; }
 }
+
   </style>
 </head>
 <body>
