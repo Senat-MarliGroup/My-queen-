@@ -40,15 +40,13 @@
     }
 
     /* Header */
-    .topbar {
-  position: fixed;
+   .topbar {
+  position: absolute;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  background: rgba(10, 8, 8, 0.35);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  padding: 14px 28px;
+  background: transparent;
+  border-bottom: none;
+  padding: 20px 28px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -100,10 +98,10 @@
       flex-direction: column;
     }
     ..brand-text .logo-text {
-  color: #fff;
+    color: #fff;
 }
 .brand-text span {
-  color: rgba(255,255,255,0.65);
+    color: rgba(255,255,255,0.65);
 }
 
     .topbar-right {
@@ -140,29 +138,41 @@
 
     /* Menu Overlay */
     .nav-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(255,255,255,0.97);
-      backdrop-filter: blur(30px);
-      z-index: 999;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 36px;
-      opacity: 0;
-      pointer-events: none;
-      transition: 0.4s;
-    }
-    .nav-overlay.show { opacity: 1; pointer-events: all; }
-    .nav-overlay a {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      color: var(--text);
-      text-decoration: none;
-      position: relative;
-      padding-bottom: 6px;
-    }
+  position: fixed;
+  top: 0; right: 0;
+  width: 340px;
+  max-width: 85vw;
+  height: 100vh;
+  background: rgba(255,255,255,0.98);
+  backdrop-filter: blur(30px);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 28px;
+  padding: 100px 40px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(100%);
+  transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+  box-shadow: -10px 0 40px rgba(0,0,0,0.08);
+}
+.nav-overlay.show {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateX(0);
+}
+
+     .nav-overlay a {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 4px;
+}
+
     .nav-overlay a::after {
       content: '';
       position: absolute;
@@ -182,7 +192,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 140px 28px 80px;
+  padding: 100px 28px 80px;
   overflow: hidden;
 }
 .hero-bg {
@@ -198,14 +208,16 @@
   max-width: 800px;
 }
 .hero-content h1 {
-  font-size: clamp(2rem, 5.5vw, 3.8rem);
+  font-size: clamp(1.8rem, 5vw, 3.2rem);
   font-weight: 300;
-  line-height: 1.15;
+  line-height: 1.2;
   color: #fff;
-  margin-bottom: 24px;
-  letter-spacing: 2px;
+  margin-bottom: 40px;
+  letter-spacing: 4px;
   text-transform: uppercase;
 }
+
+
 .hero-content p {
   font-size: 1rem;
   color: rgba(255,255,255,0.85);
@@ -932,6 +944,7 @@
 
   <!-- ===== MOBILE MENU ===== -->
   <nav class="nav-overlay" id="navOverlay">
+    <div style="position:absolute;top:20px;right:24px;cursor:pointer;font-size:1.8rem;color:var(--text);" onclick="toggleMenu()">✕</div>
     <a href="#about" onclick="toggleMenu()">О салоне</a>
     <a href="#services" onclick="toggleMenu()">Услуги</a>
     <a href="#portfolio" onclick="toggleMenu()">Портфолио</a>
@@ -944,8 +957,11 @@
       <section class="hero-section">
       <div class="hero-bg"></div>
       <div class="hero-content fade-in">
-      <h1>Создаём красоту в атмосфере уюта и профессионализма</h1>
-      <p>Маникюр, педикюр, наращивание и ламинирование ресниц, коррекция бровей. Работаем в четыре руки — быстро и качественно.</p>
+       <h1>
+  Создаём красоту<br>
+  в атмосфере уюта<br>
+  и профессионализма
+</h1>
       <div class="hero-actions">
         <a href="https://dikidi.net/671969?p=0.pi" target="_blank" class="btn-main btn-fill">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -965,11 +981,11 @@
     <div class="section-label">О салоне</div>
     <h2 class="display-title">Мы позаботились о том, чтобы каждый посетитель чувствовал себя как дома.</h2>
   </div>
-  <div class="about-single fade-in" style="text-align:center;">
+  <div class="fade-in" style="text-align:center;">
     <img src="interior1.jpg" alt="Интерьер студии My Queen" style="width:100%;max-width:800px;margin:0 auto 28px;display:block;aspect-ratio:16/9;object-fit:cover;border-radius:var(--radius-sm);">
     <p style="color:var(--text-soft);font-size:0.95rem;line-height:1.8;max-width:600px;margin:0 auto;">Уютное пространство для отдыха перед или после процедуры. Ароматный кофе, чай и лёгкие закуски во время процедур. Комфортное кресло для педикюра и продуманный интерьер.</p>
   </div>
-</div> 
+</div>
 
   <!-- ===== SERVICES ===== -->
   <div class="section" id="services">
