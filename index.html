@@ -723,7 +723,10 @@
 }
 
     .contact-info {
-      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
     .contact-info h3 {
       font-size: 1.8rem;
@@ -875,6 +878,8 @@
       .gallery { grid-template-columns: repeat(2, 1fr); }
       .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
       .contact-card { grid-template-columns: 1fr; padding: 40px 28px; text-align: center; }
+      .contact-info { align-items: center; }
+      .info-line { justify-content: center; }
       .contact-actions { align-items: center; }
       .topbar-phone span { display: none; }
       .service-card { flex: 0 0 280px; }
