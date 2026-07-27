@@ -70,7 +70,7 @@
     }
     /* корона убрана — белый круг MQ STUDIO */
 
-    }
+
     .brand-text {
       display: flex;
       flex-direction: column;
@@ -201,7 +201,7 @@
   letter-spacing: 0.5px;
 }
 
-    ..btn-main {
+    .btn-main {
   padding: 16px 36px;
   text-decoration: none;
   font-weight: 500;
@@ -734,7 +734,7 @@
     .btn-2gis:hover { border-color: var(--rose); background: var(--rose-light); }
 
     /* Footer */
-    ..site-footer {
+    .site-footer {
   text-align: center;
   padding: 48px 28px;
   color: var(--text-soft);
@@ -894,8 +894,6 @@
 </head>
 <body>
 
-  <body>
-
   <!-- ===== HEADER ===== -->
   <header class="topbar">
     <a href="#" class="brand">
@@ -927,9 +925,9 @@
   </nav>
 
   <!-- ===== HERO ===== -->
-  <section class="hero-section">
-    <div class="hero-bg"></div>
-    <div class="hero-content fade-in">
+      <section class="hero-section">
+      <div class="hero-bg"></div>
+      <div class="hero-content fade-in">
       <h1>Создаём красоту в атмосфере уюта и профессионализма</h1>
       <p>Маникюр, педикюр, наращивание и ламинирование ресниц, коррекция бровей. Работаем в четыре руки — быстро и качественно.</p>
       <div class="hero-actions">
@@ -1162,8 +1160,8 @@
   <script>
     // ===== MENU =====
     const ham = document.getElementById('hamburger');
-    const nav = document.getElementById('navOverlay');
-n    let menuOpen = false;
+    const nav = document.getElementById('navOverlay');  
+    let menuOpen = false;
     ham.addEventListener('click', () => {
       menuOpen = !menuOpen;
       nav.classList.toggle('show', menuOpen);
