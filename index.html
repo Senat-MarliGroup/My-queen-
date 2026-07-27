@@ -161,99 +161,78 @@
 
     /* Hero */
     .hero-section {
-      padding: 140px 28px 80px;
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-      min-height: 90vh;
-    }
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 140px 28px 80px;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('hero.jpg') center/cover no-repeat;
+  filter: brightness(0.55);
+  z-index: 0;
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+}
+.hero-content h1 {
+  font-size: clamp(2rem, 5.5vw, 3.8rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: #fff;
+  margin-bottom: 24px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.hero-content p {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.85);
+  max-width: 520px;
+  margin: 0 auto 40px;
+  font-weight: 300;
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+}
 
-    .hero-left h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 700;
-      line-height: 1.05;
-      margin-bottom: 24px;
-      color: var(--text);
-    }
-    .hero-left h1 em {
-      font-style: italic;
-      white-space: nowrap;
-      background: linear-gradient(135deg, var(--rose-dark), var(--gold));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+    ..btn-main {
+  padding: 16px 36px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn-fill {
+  background: #fff;
+  color: var(--text);
+}
+.btn-fill:hover {
+  background: var(--bg);
+  transform: translateY(-2px);
+}
+.btn-outline {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.5);
+}
+.btn-outline:hover {
+  border-color: #fff;
+  background: rgba(255,255,255,0.08);
+}
 
-    }
-    .hero-left p {
-      font-size: 1.05rem;
-      color: var(--text-soft);
-      max-width: 440px;
-      margin-bottom: 36px;
-      font-weight: 400;
-      line-height: 1.8;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-    .btn-main {
-      padding: 16px 32px;
-      border-radius: 100px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      letter-spacing: 0.5px;
-      transition: all 0.3s;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .btn-fill {
-      background: linear-gradient(135deg, var(--rose), var(--rose-dark));
-      color: #fff;
-      box-shadow: 0 8px 28px rgba(212,165,165,0.35);
-    }
-    .btn-fill:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 36px rgba(212,165,165,0.45);
-    }
-    .btn-outline {
-      background: transparent;
-      color: var(--text);
-      border: 1.5px solid rgba(212,165,165,0.4);
-    }
-    .btn-outline:hover {
-      border-color: var(--rose);
-      background: var(--rose-light);
-    }
-
-    .hero-right {
-      position: relative;
-    }
-    .hero-right img {
-      width: 100%;
-      border-radius: var(--radius);
-      box-shadow: 0 40px 80px rgba(0,0,0,0.08);
-      object-fit: cover;
-      aspect-ratio: 3/4;
-    }
-    .hero-right::before {
-      content: '';
-      position: absolute;
-      top: -20px; left: -20px;
-      right: 20px; bottom: 20px;
-      border: 1px solid var(--rose);
-      border-radius: var(--radius);
-      opacity: 0.3;
-      z-index: -1;
-    }
 
     /* Section styling */
     .section {
@@ -262,9 +241,9 @@
       margin: 0 auto;
     }
     .section-header {
-      text-align: center;
-      margin-bottom: 64px;
-    }
+  margin-bottom: 56px;
+}
+
     .section-header h2 {
       font-size: clamp(2rem, 4vw, 2.8rem);
       font-weight: 700;
@@ -424,6 +403,247 @@
       color: #aaa;
       font-weight: 500;
     }
+/* ===== SECTION LABELS (| О САЛОНЕ |) ===== */
+.section-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.section-label::before,
+.section-label::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--gold-light);
+}
+
+.display-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ===== ABOUT / ADVANTAGES ===== */
+.about-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--text);
+  max-width: 700px;
+  margin-bottom: 60px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.features-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 48px;
+}
+.feature-item { text-align: center; }
+.feature-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 1px solid var(--gold-light);
+  padding: 8px;
+  background: #fff;
+}
+.feature-item h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin-bottom: 12px;
+}
+.feature-item p {
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  line-height: 1.7;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+/* ===== SERVICES TABS ===== */
+.services-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--gold-light);
+  margin-bottom: 40px;
+  overflow-x: auto;
+}
+.tab-btn {
+  padding: 16px 32px;
+  background: none;
+  border: none;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+.tab-btn.active {
+  color: var(--text);
+  border-bottom-color: var(--text);
+}
+.tab-btn:hover { color: var(--text); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ===== HORIZONTAL SCROLL CARDS ===== */
+.cards-scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 20px;
+  -webkit-overflow-scrolling: touch;
+}
+.cards-scroll::-webkit-scrollbar { height: 3px; }
+.cards-scroll::-webkit-scrollbar-thumb { background: var(--gold-light); }
+
+.service-card {
+  flex: 0 0 320px;
+  scroll-snap-align: start;
+  background: #fff;
+  border: 1px solid var(--gold-light);
+  padding: 0;
+  transition: 0.4s;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.06);
+}
+.service-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+}
+.service-card-body {
+  padding: 28px;
+  text-align: center;
+}
+.service-card-body h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.service-card-body .price {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  letter-spacing: 1px;
+}
+
+/* ===== RATINGS ===== */
+.ratings-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+.rating-card {
+  background: #fff;
+  border: 1px solid var(--gold-light);
+  padding: 48px 32px;
+  text-align: center;
+  transition: 0.3s;
+}
+.rating-card:hover {
+  border-color: var(--rose);
+  transform: translateY(-4px);
+}
+.rating-score {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.rating-stars {
+  color: var(--text);
+  font-size: 1.2rem;
+  letter-spacing: 4px;
+  margin-bottom: 12px;
+}
+.rating-count {
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+.rating-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  color: var(--text-soft);
+  letter-spacing: 2px;
+}
+
+/* ===== INTERIOR / PORTFOLIO SCROLL ===== */
+.interior-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 20px;
+}
+.interior-scroll::-webkit-scrollbar { height: 3px; }
+.interior-scroll::-webkit-scrollbar-thumb { background: var(--gold-light); }
+.interior-item {
+  flex: 0 0 85vw;
+  max-width: 500px;
+  scroll-snap-align: start;
+}
+.interior-item img {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== REVIEWS HORIZONTAL SCROLL ===== */
+.reviews-scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 20px;
+}
+.reviews-scroll::-webkit-scrollbar { height: 3px; }
+.reviews-scroll::-webkit-scrollbar-thumb { background: var(--gold-light); }
+.review-card {
+  flex: 0 0 340px;
+  scroll-snap-align: start;
+  background: #fff;
+  border: 1px solid var(--gold-light);
+  padding: 36px;
+  transition: 0.3s;
+}
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.04);
+}
 
     .summary-text {
       max-width: 700px;
@@ -445,16 +665,15 @@
 
     /* Contacts */
     .contact-card {
-      background: #fff;
-      border: 1px solid rgba(212,165,165,0.12);
-      border-radius: var(--radius);
-      padding: 60px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.03);
-    }
+  background: #fff;
+  border: 1px solid var(--gold-light);
+  padding: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
     .contact-info h3 {
       font-size: 1.8rem;
       margin-bottom: 8px;
@@ -515,13 +734,14 @@
     .btn-2gis:hover { border-color: var(--rose); background: var(--rose-light); }
 
     /* Footer */
-    .site-footer {
-      text-align: center;
-      padding: 48px 28px;
-      color: #aaa;
-      font-size: 0.85rem;
-      border-top: 1px solid rgba(212,165,165,0.1);
-    }
+    ..site-footer {
+  text-align: center;
+  padding: 48px 28px;
+  color: var(--text-soft);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  border-top: 1px solid var(--gold-light);
+}
 
     /* FAB */
     .fab-wrap {
@@ -658,317 +878,282 @@
       .contact-card { grid-template-columns: 1fr; padding: 40px 28px; text-align: center; }
       .contact-actions { align-items: center; }
       .topbar-phone span { display: none; }
+      .service-card { flex: 0 0 280px; }
+      .review-card { flex: 0 0 300px; }
+      .interior-item { flex: 0 0 80vw; }
     }
     @media (max-width: 600px) {
       .section { padding: 70px 20px; }
       .services-wrap, .reviews-bg { padding: 40px 24px; }
       .gallery { gap: 10px; }
+      .service-card { flex: 0 0 260px; }
+      .tab-btn { padding: 14px 20px; font-size: 0.95rem; }
+      .features-row { gap: 32px; }
     }
   </style>
 </head>
 <body>
 
   <!-- Header -->
-  <header class="topbar">
-    <a href="#" class="brand">
-            <div class="brand-mark">
-        <svg viewBox="0 0 100 100" width="100%" height="100%">
-          <circle cx="50" cy="50" r="48" fill="#ffffff"/>
-          <text x="50" y="44" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="38" font-weight="600" fill="#1a1a1a" letter-spacing="-2">M<tspan font-style="italic" font-size="40" dx="-2">Q</tspan></text>
-          <text x="50" y="64" text-anchor="middle" font-family="'Montserrat', sans-serif" font-size="11" font-weight="500" fill="#1a1a1a" letter-spacing="3">STUDIO</text>
-        </svg>
-      </div>
-             <div class="brand-text">
-        <span>Студия красоты</span>
-        <div class="logo-text">My Queen</div>
-      </div>
+  <!-- ===== HEADER ===== -->
+<header class="topbar">
+  <a href="#" class="brand">
+    <div class="brand-mark">MQ</div>
+    <div class="brand-text">
+      <div class="logo-text">My Queen</div>
+      <span>Студия красоты</span>
+    </div>
+  </a>
+  <div class="topbar-right">
+    <a href="tel:+79180482859" class="topbar-phone">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span>+7 (918) 048-28-59</span>
     </a>
-    <div class="topbar-right">
-      <a href="tel:+79180482859" class="topbar-phone">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        <span>+7 (918) 048-28-59</span>
+    <div class="hamburger" id="hamburger">
+      <div></div><div></div><div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MOBILE MENU ===== -->
+<nav class="nav-overlay" id="navOverlay">
+  <a href="#about" onclick="toggleMenu()">О салоне</a>
+  <a href="#services" onclick="toggleMenu()">Услуги</a>
+  <a href="#portfolio" onclick="toggleMenu()">Портфолио</a>
+  <a href="#reviews" onclick="toggleMenu()">Отзывы</a>
+  <a href="#contacts" onclick="toggleMenu()">Контакты</a>
+  <a href="https://dikidi.net/671969?p=0.pi" target="_blank" onclick="toggleMenu()">Записаться</a>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero-section">
+  <div class="hero-bg"></div>
+  <div class="hero-content fade-in">
+    <h1>Создаём красоту в атмосфере уюта и профессионализма</h1>
+    <p>Маникюр, педикюр, наращивание и ламинирование ресниц, коррекция бровей. Работаем в четыре руки — быстро и качественно.</p>
+    <div class="hero-actions">
+      <a href="https://dikidi.net/671969?p=0.pi" target="_blank" class="btn-main btn-fill">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Записаться онлайн
       </a>
-      <div class="hamburger" id="hamburger">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+      <a href="https://wa.me/79180482859" target="_blank" class="btn-main btn-outline">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        WhatsApp
+      </a>
     </div>
-  </header>
+  </div>
+</section>
 
-  <!-- Mobile Menu -->
-  <nav class="nav-overlay" id="navOverlay">
-    <a href="#services" onclick="toggleMenu()">Услуги</a>
-    <a href="#portfolio" onclick="toggleMenu()">Портфолио</a>
-    <a href="#reviews" onclick="toggleMenu()">Отзывы</a>
-    <a href="#contacts" onclick="toggleMenu()">Контакты</a>
-    <a href="https://dikidi.net/671969?p=0.pi" target="_blank" onclick="toggleMenu()">Записаться</a>
-  </nav>
+<!-- ===== ABOUT / ADVANTAGES ===== -->
+<div class="section" id="about">
+  <div class="section-header fade-in">
+    <div class="section-label">О салоне</div>
+    <h2 class="display-title">Мы позаботились о том, чтобы каждый посетитель чувствовал себя как дома.</h2>
+  </div>
+  <div class="features-row fade-in">
+    <div class="feature-item">
+      <img src="interior1.jpg" alt="Лаундж-зона" class="feature-img">
+      <h4>Лаундж-зона</h4>
+      <p>Уютное пространство для отдыха перед или после процедуры</p>
+    </div>
+    <div class="feature-item">
+      <img src="interior2.jpg" alt="Бар" class="feature-img">
+      <h4>Бар</h4>
+      <p>Ароматный кофе, чай и лёгкие закуски во время процедур</p>
+    </div>
+    <div class="feature-item">
+      <img src="interior3.jpg" alt="Комфорт" class="feature-img">
+      <h4>Комфорт</h4>
+      <p>Комфортное кресло для педикюра и продуманный интерьер</p>
+    </div>
+  </div>
+</div>
 
-  <!-- Hero -->
-  <section class="hero-section">
-    <div class="hero-left fade-in">
-            <h1>Студия красоты<br><em>My Queen</em></h1>
-      <p>Маникюр, педикюр, наращивание и ламинирование ресниц, коррекция бровей. Работаем в четыре руки — быстро и качественно. Комфортное кресло для педикюра и уютная атмосфера в Краснодаре.</p>
-      <div class="hero-actions">
-        <a href="https://dikidi.net/671969?p=0.pi" target="_blank" class="btn-main btn-fill">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          Записаться онлайн
-        </a>
-        <a href="https://wa.me/79180482859" target="_blank" class="btn-main btn-outline">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-          WhatsApp
-        </a>
-      </div>
-    </div>
-    <div class="hero-right fade-in">
-      <img src="hero.jpg" alt="My Queen — студия красоты">
-    </div>
-  </section>
+<!-- ===== SERVICES ===== -->
+<div class="section" id="services">
+  <div class="section-header fade-in">
+    <div class="section-label">Услуги</div>
+    <h2 class="display-title">Полный комплекс ногтевого сервиса, ресниц и бровей</h2>
+  </div>
 
-  <!-- Services -->
-  <div class="section" id="services">
-    <div class="section-header fade-in">
-      <h2>Услуги</h2>
-      <p>Полный комплекс ногтевого сервиса, ресниц и бровей</p>
-      <div class="divider"></div>
-    </div>
-    <div class="services-wrap fade-in">
-      <div class="services-row">
-        <div class="service-box">
-          <div class="service-icon">💅</div>
-          <h3>Ногтевые студии</h3>
-          <ul>
-            <li>Женский педикюр</li>
-            <li>Мужской педикюр</li>
-            <li>Мужской маникюр</li>
-            <li>Аппаратный маникюр</li>
-            <li>Гель-лак</li>
-            <li>Наращивание гелем</li>
-            <li>Наращивание акрилом</li>
-          </ul>
-        </div>
-        <div class="service-box">
-          <div class="service-icon">👁</div>
-          <h3>Ресницы и брови</h3>
-          <ul>
-            <li>Наращивание ресниц</li>
-            <li>Ламинирование ресниц</li>
-            <li>Окрашивание ресниц</li>
-            <li>Коррекция бровей</li>
-            <li>Окрашивание бровей</li>
-            <li>Ламинирование бровей</li>
-          </ul>
-        </div>
-      </div>
+  <div class="services-tabs fade-in">
+    <button class="tab-btn active" onclick="switchTab(this,'tab-all')">Все услуги</button>
+    <button class="tab-btn" onclick="switchTab(this,'tab-nails')">Ногтевой сервис</button>
+    <button class="tab-btn" onclick="switchTab(this,'tab-lashes')">Ресницы и брови</button>
+  </div>
+
+  <div id="tab-all" class="tab-panel active fade-in">
+    <div class="cards-scroll">
+      <div class="service-card"><img src="photo1.jpg" alt="Маникюр"><div class="service-card-body"><h3>Маникюр</h3><div class="price">от 1 000 ₽</div></div></div>
+      <div class="service-card"><img src="photo2.jpg" alt="Педикюр"><div class="service-card-body"><h3>Педикюр</h3><div class="price">от 1 200 ₽</div></div></div>
+      <div class="service-card"><img src="photo3.jpg" alt="Наращивание ресниц"><div class="service-card-body"><h3>Наращивание ресниц</h3><div class="price">от 1 800 ₽</div></div></div>
+      <div class="service-card"><img src="photo4.jpg" alt="Ламинирование"><div class="service-card-body"><h3>Ламинирование</h3><div class="price">от 1 500 ₽</div></div></div>
+      <div class="service-card"><img src="photo5.jpg" alt="Коррекция бровей"><div class="service-card-body"><h3>Коррекция бровей</h3><div class="price">от 700 ₽</div></div></div>
+      <div class="service-card"><img src="photo6.jpg" alt="Гель-лак"><div class="service-card-body"><h3>Гель-лак</h3><div class="price">от 1 400 ₽</div></div></div>
     </div>
   </div>
 
-  <!-- Portfolio -->
-  <div class="section" id="portfolio">
-    <div class="section-header fade-in">
-      <h2>Портфолио</h2>
-      <p>Работы наших мастеров</p>
-      <div class="divider"></div>
-    </div>
-    <div class="gallery fade-in">
-      <div class="gallery-item" onclick="openBox('photo1.jpg')"><img src="photo1.jpg" alt="Работа 1"></div>
-      <div class="gallery-item" onclick="openBox('photo2.jpg')"><img src="photo2.jpg" alt="Работа 2"></div>
-      <div class="gallery-item" onclick="openBox('photo3.jpg')"><img src="photo3.jpg" alt="Работа 3"></div>
-      <div class="gallery-item" onclick="openBox('photo4.jpg')"><img src="photo4.jpg" alt="Работа 4"></div>
-      <div class="gallery-item" onclick="openBox('photo5.jpg')"><img src="photo5.jpg" alt="Работа 5"></div>
-      <div class="gallery-item" onclick="openBox('photo6.jpg')"><img src="photo6.jpg" alt="Работа 6"></div>
-      <div class="gallery-item" onclick="openBox('photo7.jpg')"><img src="photo7.jpg" alt="Работа 7"></div>
-      <div class="gallery-item" onclick="openBox('photo8.jpg')"><img src="photo8.jpg" alt="Работа 8"></div>
+  <div id="tab-nails" class="tab-panel fade-in">
+    <div class="cards-scroll">
+      <div class="service-card"><img src="photo1.jpg" alt="Маникюр"><div class="service-card-body"><h3>Маникюр</h3><div class="price">от 1 000 ₽</div></div></div>
+      <div class="service-card"><img src="photo2.jpg" alt="Педикюр"><div class="service-card-body"><h3>Педикюр</h3><div class="price">от 1 200 ₽</div></div></div>
+      <div class="service-card"><img src="photo6.jpg" alt="Гель-лак"><div class="service-card-body"><h3>Гель-лак</h3><div class="price">от 1 400 ₽</div></div></div>
+      <div class="service-card"><img src="photo7.jpg" alt="Наращивание гелем"><div class="service-card-body"><h3>Наращивание гелем</h3><div class="price">от 2 500 ₽</div></div></div>
     </div>
   </div>
 
-  <!-- Reviews -->
-  <div class="section" id="reviews">
-    <div class="section-header fade-in">
-      <h2>Отзывы</h2>
-      <p>119 отзывов на 2ГИС · Рейтинг 5.0</p>
-      <div class="divider"></div>
-    </div>
-    <div class="reviews-bg fade-in">
-      <div class="summary-text">
-        Клиенты ценят комфортное кресло для педикюра и возможность сделать маникюр и педикюр одновременно. Мастера делают идеальные ногти с тонкой работой по обработке пальчиков. Отмечают быстрое выполнение в четыре руки, напитки и сладости во время процедур.
-      </div>
-      <div class="review-grid">
-        <div class="review-item">
-          <div class="review-top">
-            <div class="review-avatar">ЕК</div>
-            <div>
-              <div class="review-name">Елизавета Крауберг</div>
-              <div class="review-stars">★★★★★</div>
-            </div>
-          </div>
-          <p>Второй раз прихожу на маникюр к мастеру Владе, всё очень нравится! Ноготочки тонкие и аккуратные. Маникюр делает быстро и качественно — обязательно приду ещё!</p>
-          <div class="review-date">6 июня 2026</div>
-        </div>
-        <div class="review-item">
-          <div class="review-top">
-            <div class="review-avatar">ЮЧ</div>
-            <div>
-              <div class="review-name">Юлия Чернова</div>
-              <div class="review-stars">★★★★★</div>
-            </div>
-          </div>
-          <p>Была на окрашивании и коррекции бровей, сделала ламинирование ресниц. Очень понравилось, впервые после переезда нашла своих мастеров!</p>
-          <div class="review-date">9 мая 2026 · Отзыв подтверждён</div>
-        </div>
-        <div class="review-item">
-          <div class="review-top">
-            <div class="review-avatar">ИС</div>
-            <div>
-              <div class="review-name">Ирина Столова</div>
-              <div class="review-stars">★★★★★</div>
-            </div>
-          </div>
-          <p>Ходила на гелевую коррекцию, мастер Алина сделала всё идеально. Очень приятная девушка — приду ещё!</p>
-          <div class="review-date">13 июля 2026</div>
-        </div>
-        <div class="review-item">
-          <div class="review-top">
-            <div class="review-avatar">ОП</div>
-            <div>
-              <div class="review-name">Ольга Прохоренко</div>
-              <div class="review-stars">★★★★★</div>
-            </div>
-          </div>
-          <p>Мастер Мария супер! Хожу к ней на брови второй раз и сегодня решила сходить на ламинирование ресниц. Я в восторге!</p>
-          <div class="review-date">24 июня 2026</div>
-        </div>
-        <div class="review-item">
-          <div class="review-top">
-            <div class="review-avatar">VK</div>
-            <div>
-              <div class="review-name">virgo k</div>
-              <div class="review-stars">★★★★★</div>
-            </div>
-          </div>
-          <p>Ходила к мастеру Анастасии, всё понравилось, качественно сделала.</p>
-          <div class="review-date">26 ноября 2025 · Отзыв подтверждён</div>
-        </div>
-        <div class="review-item">
-          <div class="review-top">
-            <div class="review-avatar">АА</div>
-            <div>
-              <div class="review-name">Анастасия Анастасия</div>
-              <div class="review-stars">★★★★★</div>
-            </div>
-          </div>
-          <p>Лучшая студия в городе! Хожу к мастеру Алине уже 5 лет. Переехала в Новороссийск, но приезжаю именно сюда.</p>
-          <div class="review-date">13 июля 2026</div>
-        </div>
-      </div>
-      <div class="center-btn">
-        <a href="https://2gis.ru/krasnodar/geo/70000001081662112" target="_blank" class="btn-main btn-outline">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          Все 119 отзывов на 2ГИС
-        </a>
-      </div>
+  <div id="tab-lashes" class="tab-panel fade-in">
+    <div class="cards-scroll">
+      <div class="service-card"><img src="photo3.jpg" alt="Наращивание ресниц"><div class="service-card-body"><h3>Наращивание ресниц</h3><div class="price">от 1 800 ₽</div></div></div>
+      <div class="service-card"><img src="photo4.jpg" alt="Ламинирование"><div class="service-card-body"><h3>Ламинирование ресниц</h3><div class="price">от 1 500 ₽</div></div></div>
+      <div class="service-card"><img src="photo5.jpg" alt="Коррекция бровей"><div class="service-card-body"><h3>Коррекция бровей</h3><div class="price">от 700 ₽</div></div></div>
+      <div class="service-card"><img src="photo8.jpg" alt="Окрашивание"><div class="service-card-body"><h3>Окрашивание бровей</h3><div class="price">от 600 ₽</div></div></div>
     </div>
   </div>
+</div>
 
-  <!-- Contacts -->
-  <div class="section" id="contacts">
-    <div class="section-header fade-in">
-      <h2>Контакты</h2>
-      <p>Ждём вас по предварительной записи</p>
-      <div class="divider"></div>
+<!-- ===== RATINGS ===== -->
+<div class="section">
+  <div class="section-header fade-in">
+    <div class="section-label">Рейтинг</div>
+    <h2 class="display-title">Оценка нашей работы от клиентов на независимых площадках.</h2>
+  </div>
+  <div class="ratings-row fade-in">
+    <div class="rating-card">
+      <div class="rating-score">5.0</div>
+      <div class="rating-stars">★★★★★</div>
+      <div class="rating-count">119 отзывов</div>
+      <div class="rating-logo">Яндекс</div>
     </div>
-    <div class="contact-card fade-in">
-      <div class="contact-info">
-        <h3>My Queen</h3>
-        <div class="sub">Студия красоты · Краснодар</div>
-        <div class="info-line">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <div>Улица Григория Булгакова, лит14</div>
-        </div>
-        <div class="info-line">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <a href="tel:+79180482859">+7 (918) 048-28-59</a>
-        </div>
-        <div class="info-line">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          <span>Ежедневно по предварительной записи</span>
-        </div>
-      </div>
-      <div class="contact-actions">
-        <a href="https://2gis.ru/krasnodar/geo/70000001081662112" target="_blank" class="btn-green">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-          Маршрут в 2ГИС
-        </a>
-        <a href="https://2gis.ru/krasnodar/geo/70000001081662112" target="_blank" class="btn-2gis">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          Профиль на 2ГИС
-        </a>
-      </div>
+    <div class="rating-card">
+      <div class="rating-score">5.0</div>
+      <div class="rating-stars">★★★★★</div>
+      <div class="rating-count">119 отзывов</div>
+      <div class="rating-logo">2GIS</div>
     </div>
   </div>
+</div>
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <p>© 2026 My Queen · Студия красоты · Краснодар</p>
-    <p style="margin-top:6px;">Рейтинг 5.0 · 119 отзывов · 176 фото работ</p>
-  </footer>
+<!-- ===== PORTFOLIO ===== -->
+<div class="section" id="portfolio">
+  <div class="section-header fade-in">
+    <div class="section-label">Портфолио</div>
+    <h2 class="display-title">Работы наших мастеров</h2>
+  </div>
+  <div class="interior-scroll fade-in">
+    <div class="interior-item" onclick="openBox('photo1.jpg')"><img src="photo1.jpg" alt="Работа 1"></div>
+    <div class="interior-item" onclick="openBox('photo2.jpg')"><img src="photo2.jpg" alt="Работа 2"></div>
+    <div class="interior-item" onclick="openBox('photo3.jpg')"><img src="photo3.jpg" alt="Работа 3"></div>
+    <div class="interior-item" onclick="openBox('photo4.jpg')"><img src="photo4.jpg" alt="Работа 4"></div>
+    <div class="interior-item" onclick="openBox('photo5.jpg')"><img src="photo5.jpg" alt="Работа 5"></div>
+    <div class="interior-item" onclick="openBox('photo6.jpg')"><img src="photo6.jpg" alt="Работа 6"></div>
+    <div class="interior-item" onclick="openBox('photo7.jpg')"><img src="photo7.jpg" alt="Работа 7"></div>
+    <div class="interior-item" onclick="openBox('photo8.jpg')"><img src="photo8.jpg" alt="Работа 8"></div>
+  </div>
+</div>
 
-  <!-- Floating Buttons -->
-  <div class="fab-wrap">
-    <a href="https://wa.me/79180482859" target="_blank" class="fab-btn fab-wa">
-      <span class="fab-tip">WhatsApp</span>
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-    </a>
-    <a href="https://dikidi.net/671969?p=0.pi" target="_blank" class="fab-btn fab-book">
-      <span class="fab-tip">Записаться</span>
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+<!-- ===== REVIEWS ===== -->
+<div class="section" id="reviews">
+  <div class="section-header fade-in">
+    <div class="section-label">Отзывы</div>
+    <h2 class="display-title">Что говорят наши клиенты</h2>
+  </div>
+  <div class="reviews-scroll fade-in">
+    <div class="review-card">
+      <div class="review-top"><div class="review-avatar">ЕК</div><div><div class="review-name">Елизавета Крауберг</div><div class="review-stars">★★★★★</div></div></div>
+      <p>Второй раз прихожу на маникюр к мастеру Владе, всё очень нравится! Ноготочки тонкие и аккуратные. Обязательно приду ещё!</p>
+      <div class="review-date">6 июня 2026</div>
+    </div>
+    <div class="review-card">
+      <div class="review-top"><div class="review-avatar">ЮЧ</div><div><div class="review-name">Юлия Чернова</div><div class="review-stars">★★★★★</div></div></div>
+      <p>Была на окрашивании и коррекции бровей, сделала ламинирование ресниц. Очень понравилось, впервые после переезда нашла своих мастеров!</p>
+      <div class="review-date">9 мая 2026 · Отзыв подтверждён</div>
+    </div>
+    <div class="review-card">
+      <div class="review-top"><div class="review-avatar">ИС</div><div><div class="review-name">Ирина Столова</div><div class="review-stars">★★★★★</div></div></div>
+      <p>Ходила на гелевую коррекцию, мастер Алина сделала всё идеально. Очень приятная девушка — приду ещё!</p>
+      <div class="review-date">13 июля 2026</div>
+    </div>
+    <div class="review-card">
+      <div class="review-top"><div class="review-avatar">ОП</div><div><div class="review-name">Ольга Прохоренко</div><div class="review-stars">★★★★★</div></div></div>
+      <p>Мастер Мария супер! Хожу к ней на брови второй раз и сегодня решила сходить на ламинирование ресниц. Я в восторге!</p>
+      <div class="review-date">24 июня 2026</div>
+    </div>
+    <div class="review-card">
+      <div class="review-top"><div class="review-avatar">VK</div><div><div class="review-name">virgo k</div><div class="review-stars">★★★★★</div></div></div>
+      <p>Ходила к мастеру Анастасии, всё понравилось, качественно сделала.</p>
+      <div class="review-date">26 ноября 2025 · Отзыв подтверждён</div>
+    </div>
+    <div class="review-card">
+      <div class="review-top"><div class="review-avatar">АА</div><div><div class="review-name">Анастасия Анастасия</div><div class="review-stars">★★★★★</div></div></div>
+      <p>Лучшая студия в городе! Хожу к мастеру Алине уже 5 лет. Переехала в Новороссийск, но приезжаю именно сюда.</p>
+      <div class="review-date">13 июля 2026</div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:40px;">
+    <a href="https://2gis.ru/krasnodar/geo/70000001081662112" target="_blank" class="btn-main btn-outline" style="border-color:var(--gold-light);color:var(--text);">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Все 119 отзывов на 2ГИС
     </a>
   </div>
+</div>
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox" onclick="closeBox()">
-    <button class="lightbox-close" onclick="closeBox()">✕</button>
-    <img id="lbImg" src="" alt="">
+<!-- ===== CONTACTS ===== -->
+<div class="section" id="contacts">
+  <div class="section-header fade-in">
+    <div class="section-label">Контакты</div>
+    <h2 class="display-title">Ждём вас по предварительной записи</h2>
   </div>
+  <div class="contact-card fade-in">
+    <div class="contact-info">
+      <h3>My Queen</h3>
+      <div class="sub">Студия красоты · Краснодар</div>
+      <div class="info-line">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div>Улица Григория Булгакова, лит14</div>
+      </div>
+      <div class="info-line">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <a href="tel:+79180482859">+7 (918) 048-28-59</a>
+      </div>
+      <div class="info-line">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span>Ежедневно по предварительной записи</span>
+      </div>
+    </div>
+    <div class="contact-actions">
+      <a href="https://2gis.ru/krasnodar/geo/70000001081662112" target="_blank" class="btn-green">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+        Маршрут в 2ГИС
+      </a>
+      <a href="https://2gis.ru/krasnodar/geo/70000001081662112" target="_blank" class="btn-2gis">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Профиль на 2ГИС
+      </a>
+    </div>
+  </div>
+</div>
 
-  <script>
-    // Menu
-    const ham = document.getElementById('hamburger');
-    const nav = document.getElementById('navOverlay');
-    let open = false;
-    ham.addEventListener('click', () => {
-      open = !open;
-      nav.classList.toggle('show', open);
-    });
-    function toggleMenu() {
-      open = false;
-      nav.classList.remove('show');
-    }
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <p>© 2026 My Queen · Студия красоты · Краснодар</p>
+  <p style="margin-top:6px;">Рейтинг 5.0 · 119 отзывов · 176 фото работ</p>
+</footer>
 
-    // Scroll reveal
-    const faders = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 60);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    faders.forEach(el => observer.observe(el));
+<!-- ===== FAB ===== -->
+<div class="fab-wrap">
+  <a href="https://wa.me/79180482859" target="_blank" class="fab-btn fab-wa">
+    <span class="fab-tip">WhatsApp</span>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  </a>
+  <a href="https://dikidi.net/671969?p=0.pi" target="_blank" class="fab-btn fab-book">
+    <span class="fab-tip">Записаться</span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+  </a>
+</div>
 
-    // Lightbox
-    function openBox(src) {
-      document.getElementById('lbImg').src = src;
-      document.getElementById('lightbox').classList.add('on');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeBox() {
-      document.getElementById('lightbox').classList.remove('on');
-      document.body.style.overflow = '';
-    }
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBox(); });
-  </script>
-</body>
-</html>
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox" id="lightbox" onclick="closeBox()">
+  <button class="lightbox-close" onclick="closeBox()">✕</button>
+  <img id="lbImg" src="" alt="">
+</div>
