@@ -909,17 +909,16 @@
 
 /* Круглые кнопки справа */
 .hero-side-btns {
-  position: fixed;
-  right: 24px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 998;
+  position: relative;
+  z-index: 2;
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 24px;
+  margin-bottom: 40px;
 }
 
-.hero-side-btn {
+..hero-side-btn {
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -927,8 +926,18 @@
   place-items: center;
   color: #fff;
   text-decoration: none;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-  transition: transform 0.3s;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+}
+.hero-side-btn:hover {
+  transform: translateY(-4px) scale(1.08);
+  background: rgba(255,255,255,0.2);
+  border-color: rgba(255,255,255,0.5);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
 }
 .hero-side-btn:hover {
   transform: scale(1.12);
@@ -941,7 +950,6 @@
 }
 
 @media (max-width: 600px) {
-  .hero-side-btns { right: 16px; gap: 12px; }
   .hero-side-btn { width: 48px; height: 48px; }
   .hero-bottom { padding-bottom: 40px; }
   .hero-content { padding-top: 22vh; }
