@@ -896,6 +896,23 @@
   .hero-side-btn { width: 48px; height: 48px; }
   .hero-side-btns { right: 16px; bottom: 16px; gap: 10px; }
 }
+    @media (min-width: 1024px) {
+      .section { padding: 120px 40px; }
+      .hero-content { margin-bottom: 80px; }
+      .hero-content h1 { font-size: 3.2rem; letter-spacing: 10px; }
+      #portfolio .fade-in { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+      #reviews > .fade-in {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        overflow-x: visible;
+      }
+      #reviews > .fade-in > div { flex: none; }
+      .price-wrap { grid-template-columns: 1fr 1fr; }
+      #contacts .fade-in { padding: 80px; gap: 80px; }
+      .hero-side-btns { right: 32px; bottom: 32px; }
+    }
+
 
     /* Кнопка внизу hero */
 .hero-bottom {
